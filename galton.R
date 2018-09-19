@@ -4,8 +4,8 @@ require(UsingR)
 require(HistData)
 require(ggplot2)
 #################################################problema 1#####################################################
-a)
-datos<-galton
+#a)
+datos<-data.frame(galton)
 modelopadrehijo<-lm(datos$child~datos$parent)
 summary(modelopadrehijo)
 #con un 95 % de confianza se rechaza la hipotesis nula bo=y^, lo cual indica que hay una relacion de 64.63%(pendiente) 
@@ -39,9 +39,13 @@ ggplot(mtcars,aes(mtcars$hp,mtcars$mpg))+geom_point()+geom_smooth(method = "lm")
 #Probando la hipotesis nula tenemos que los p-value son menores al .05 establecido, por lo tanto la hipotesis de
 #que no hay relacion entre los caballos de fuerza y el consumo de combustible se rechaza.
 #Para 111 caballos de fuerza el consumo de combustible sera de 22.52533
-
-
-
+###########################################intervalos de confianza###############################################
+#beta1 galton
+#.064629+-ta/2,n-2*sy
+#el valor de b1 se situa en [.5655516,7270284]
+datox<-data.frame(mean(galton$parent))
+predict(modelopadrehijo,datox,interval = "confidence")
+confint(modelopadrehijo)
 
 
 
